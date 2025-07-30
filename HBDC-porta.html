@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HB Diagnostic Center - Advanced Medical Laboratory</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+    }
+
+    .service-card {
+      transition: all 0.3s ease;
+      border: 1px solid #e5e7eb;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <!-- Header -->
+<header class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+
+      <!-- Logo & Branding -->
+      <div class="flex items-center space-x-4">
+        <img src="/static/images/Logo.jpg" alt="HB Diagnostic Logo" class="w-14 h-14 object-contain rounded-lg" />
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">HB Diagnostic Center</h1>
+          <p class="text-sm text-blue-600 font-medium">Advanced Medical Laboratory</p>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
+        <a href="#blood-tests" class="text-gray-700 hover:text-blue-600 font-medium transition">Blood Tests</a>
+        <a href="#serological-tests" class="text-gray-700 hover:text-blue-600 font-medium transition">Serological</a>
+        <a href="#shop" class="text-gray-700 hover:text-blue-600 font-medium transition">Shop</a>
+        <a href="#reports" class="text-gray-700 hover:text-blue-600 font-medium transition">Reports</a>
+        <a href="#contact" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 font-semibold transition">Contact</a>
+      </nav>
+
+       <!-- Mobile Nav (Optional future expansion) -->
+      <!--
+      <div class="md:hidden">
+        <button class="text-gray-700 focus:outline-none">
+          ☰
+        </button>
+      </div>
+      -->
+    </div>
+  </div>
+</header>
+  <!-- Hero -->
+  <section class="hero-gradient text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-5xl font-bold mb-6 leading-tight">Accurate Diagnostics for Better Health</h2>
+          <p class="text-xl mb-8 opacity-90">State-of-the-art laboratory services with quick results, expert analysis, and comprehensive health screening packages.</p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button onclick="openModal('booking')" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">Book Test Now</button>
+            <button onclick="openModal('reports')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition">View Reports</button>
+          </div>
+        </div>
+        <div class="text-center">
+          <div class="bg-white bg-opacity-10 rounded-2xl p-8 backdrop-blur-sm">
+            <div class="text-8xl mb-4">🏥</div>
+            <h3 class="text-2xl font-semibold mb-4">24/7 Lab Services</h3>
+            <div class="grid grid-cols-2 gap-4 text-center">
+              <div class="bg-white bg-opacity-20 rounded-lg p-3">
+                <div class="text-2xl font-bold">500+</div>
+                <div class="text-sm">Tests Available</div>
+              </div>
+              <div class="bg-white bg-opacity-20 rounded-lg p-3">
+                <div class="text-2xl font-bold">2Hr</div>
+                <div class="text-sm">Quick Results</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood Tests -->
+  <section id="blood-tests" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h3 class="text-4xl font-bold text-gray-900 mb-4">Available Blood Tests</h3>
+        <p class="text-gray-600 max-w-2xl mx-auto">Choose from a range of diagnostic tests tailored to detect and manage health conditions early.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Example: CBC -->
+        <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+          <h4 class="text-xl font-semibold text-gray-900 mb-2">Complete Blood Count (CBC)</h4>
+          <p class="text-gray-600 mb-4">Evaluates anemia, infection & clotting issues.</p>
+          <div class="flex justify-between items-center">
+            <span class="text-blue-600 font-bold text-lg">₹299</span>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-semibold">Book</button>
+          </div>
+        </div>
+        <!-- Lipid Profile -->
+      <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+        <h4 class="text-xl font-semibold text-gray-900 mb-2">Lipid Profile</h4>
+        <p class="text-gray-600 mb-4">Assesses cholesterol levels including HDL, LDL, and triglycerides. Useful in evaluating cardiovascular risk and guiding diet and lifestyle adjustments.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-blue-600 font-bold text-lg">₹449</span>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-semibold">Book</button>
+        </div>
+      </div>
+
+      <!-- Liver Function -->
+      <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+        <h4 class="text-xl font-semibold text-gray-900 mb-2">Liver Function Test (LFT)</h4>
+        <p class="text-gray-600 mb-4">Monitors enzymes and proteins like ALT, AST, bilirubin to assess liver damage, inflammation, or disease. Recommended for chronic medication users or hepatitis screening.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-blue-600 font-bold text-lg">₹399</span>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-semibold">Book</button>
+        </div>
+      </div>
+
+      <!-- Blood Sugar -->
+      <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+        <h4 class="text-xl font-semibold text-gray-900 mb-2">Fasting Blood Sugar (FBS)</h4>
+        <p class="text-gray-600 mb-4">Measures blood glucose levels after an overnight fast. Helps screen for diabetes, monitor glucose control, and guide dietary recommendations.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-blue-600 font-bold text-lg">₹199</span>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-semibold">Book</button>
+        </div>
+      </div>
+
+      <!-- Thyroid Panel -->
+      <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+        <h4 class="text-xl font-semibold text-gray-900 mb-2">Thyroid Function Test (T3, T4, TSH)</h4>
+        <p class="text-gray-600 mb-4">Detects hypo or hyperthyroidism by measuring thyroid hormone levels. Ideal for assessing metabolism, energy, and hormonal balance.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-blue-600 font-bold text-lg">₹499</span>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-semibold">Book</button>
+        </div>
+      </div>
+
+      <!-- Vitamin D -->
+      <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+        <h4 class="text-xl font-semibold text-gray-900 mb-2">Vitamin D Test</h4>
+        <p class="text-gray-600 mb-4">Checks for vitamin D deficiency, which may cause fatigue, bone pain, and mood issues. Often recommended for joint pain or immune support.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-blue-600 font-bold text-lg">₹599</span>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-semibold">Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+        <!-- Add more test cards here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Serological Tests -->
+  <section id="serological-tests" class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h3 class="text-4xl font-bold text-gray-900 mb-4">Advanced Serological Tests</h3>
+        <p class="text-gray-600 max-w-2xl mx-auto">Detect antibodies & infections with high-precision testing.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- HIV Antibody Test -->
+        <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+          <h4 class="text-xl font-semibold text-gray-900 mb-2">HIV Antibody (ELISA)</h4>
+          <p class="text-gray-600 mb-4">Detects HIV antibodies for early diagnosis.</p>
+          <div class="flex justify-between items-center">
+            <span class="text-red-600 font-bold text-lg">₹799</span>
+            <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm font-semibold">Book</button>
+          </div>
+        </div>
+       <!-- Hepatitis B Surface Antigen (HBsAg) -->
+      <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+        <h4 class="text-xl font-semibold text-gray-900 mb-2">Hepatitis B Surface Antigen (HBsAg)</h4>
+        <p class="text-gray-600 mb-4">Identifies active Hepatitis B infection by detecting surface antigens. Crucial for liver health monitoring and vaccination follow-up.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-yellow-600 font-bold text-lg">₹699</span>
+          <button class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 text-sm font-semibold">Book</button>
+        </div>
+      </div>
+
+      <!-- ANA (Antinuclear Antibody) -->
+      <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+        <h4 class="text-xl font-semibold text-gray-900 mb-2">ANA (Antinuclear Antibody)</h4>
+        <p class="text-gray-600 mb-4">Screens for autoimmune disorders like lupus and rheumatoid arthritis by detecting antibodies against cell nuclei.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-purple-600 font-bold text-lg">₹899</span>
+          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 text-sm font-semibold">Book</button>
+        </div>
+      </div>
+
+      <!-- Dengue IgG/IgM -->
+      <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+        <h4 class="text-xl font-semibold text-gray-900 mb-2">Dengue IgG/IgM Antibody Test</h4>
+        <p class="text-gray-600 mb-4">Differentiates between recent and past dengue infections. Vital for outbreak control and patient management.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-orange-600 font-bold text-lg">₹549</span>
+          <button class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 text-sm font-semibold">Book</button>
+        </div>
+      </div>
+
+      <!-- COVID-19 IgG/IgM -->
+      <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+        <h4 class="text-xl font-semibold text-gray-900 mb-2">COVID-19 IgG/IgM Antibody Test</h4>
+        <p class="text-gray-600 mb-4">Assesses immune response post-infection or vaccination. Helps determine exposure history and immunity status.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-green-600 font-bold text-lg">₹599</span>
+          <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-sm font-semibold">Book</button>
+        </div>
+      </div>
+
+      <!-- Syphilis (VDRL/RPR) -->
+      <div class="border p-6 rounded-xl shadow hover:shadow-md transition">
+        <h4 class="text-xl font-semibold text-gray-900 mb-2">Syphilis Test (VDRL/RPR)</h4>
+        <p class="text-gray-600 mb-4">Detects antibodies produced in response to Treponema pallidum. Used for screening and monitoring treatment efficacy.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-pink-600 font-bold text-lg">₹499</span>
+          <button class="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 text-sm font-semibold">Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+        <!-- Add more serological test cards here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop Section -->
+  <section id="shop" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h3 class="text-4xl font-bold text-gray-900 mb-4">Shop Health Essentials</h3>
+        <p class="text-gray-600 max-w-2xl mx-auto">Supplements & diet plans by healthcare professionals.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Product 1 -->
+        <div class="bg-white border p-6 rounded-xl shadow hover:shadow-md transition">
+          <div class="text-center text-4xl mb-4">💊</div>
+          <h4 class="text-xl font-semibold text-gray-900 mb-2">Omega-3 Supplements</h4>
+          <p class="text-gray-600 mb-4">Heart and brain support.</p>
+          <div class="flex justify-between items-center">
+            <span class="text-blue-600 font-bold text-lg">₹650</span>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-semibold">Buy Now</button>
+          </div>
+        </div>
+           <!-- Diet Plan Card -->
+            <div class="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition">
+                <div class="text-center text-4xl mb-4">🥗</div>
+                <h4 class="text-xl font-semibold text-gray-900 mb-2">Diabetes Control Diet</h4>
+                <p class="text-gray-600 mb-4">Personalized diet plans to regulate blood sugar levels naturally.</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-blue-600 font-bold text-lg">₹3000/month</span>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-semibold">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Another Plan -->
+            <div class="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition">
+                <div class="text-center text-4xl mb-4">🏋️‍♂️</div>
+                <h4 class="text-xl font-semibold text-gray-900 mb-2">Weight Loss Plan</h4>
+                <p class="text-gray-600 mb-4">Structured meal plans to help you lose weight sustainably.</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-blue-600 font-bold text-lg">₹2980/month</span>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-semibold">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <!-- Add more products or plans here -->
+      </div>
+    </div>
+  </section>
+<!-- Add inside <nav> -->
+<a href="#" onclick="openModal('signin')" class="text-gray-700 hover:text-blue-600 font-medium transition">Sign In</a>
+<a href="#" onclick="openModal('signup')" class="text-gray-700 hover:text-blue-600 font-medium transition">Sign Up</a>
+<!-- Sign In Modal -->
+<div id="signin-modal" class="modal">
+  <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-xl font-bold text-gray-800">Sign In</h3>
+      <button onclick="closeModal('signin')" class="text-gray-500 text-2xl">&times;</button>
+    </div>
+    <form onsubmit="signIn(event)">
+      <input type="text" id="signin-username" placeholder="Username" class="w-full mb-4 px-4 py-2 border rounded" required>
+      <input type="password" id="signin-password" placeholder="Password" class="w-full mb-4 px-4 py-2 border rounded" required>
+      <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- Sign Up Modal -->
+<div id="signup-modal" class="modal">
+  <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-xl font-bold text-gray-800">Sign Up</h3>
+      <button onclick="closeModal('signup')" class="text-gray-500 text-2xl">&times;</button>
+    </div>
+    <form onsubmit="signUp(event)">
+      <input type="text" id="signup-username" placeholder="Username" class="w-full mb-4 px-4 py-2 border rounded" required>
+      <input type="password" id="signup-password" placeholder="Password" class="w-full mb-4 px-4 py-2 border rounded" required>
+      <select id="signup-role" class="w-full mb-4 px-4 py-2 border rounded" required>
+        <option value="">Select Role</option>
+        <option value="customer">Customer</option>
+        <option value="owner">Lab Owner</option>
+      </select>
+      <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</button>
+    </form>
+  </div>
+</div>
+<section id="upload-report-section" class="py-16 bg-gray-100 hidden">
+  <div class="max-w-4xl mx-auto px-4">
+    <h3 class="text-2xl font-bold mb-6 text-gray-800">Upload Patient Report</h3>
+    <form method="POST" action="/upload_result" enctype="multipart/form-data" class="space-y-4 bg-white p-6 rounded-lg shadow">
+      <input type="text" name="id" placeholder="Enter Patient ID" class="w-full border px-4 py-3 rounded-lg">
+      <input type="file" name="report" class="w-full border px-4 py-3 rounded-lg">
+      <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Upload Report</button>
+    </form>
+  </div>
+</section>
+
+  <!-- Upload Patient Report -->
+  <section class="py-16 bg-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h3 class="text-2xl font-bold mb-6 text-gray-800">Upload Patient Report</h3>
+      <form method="POST" action="/upload_result" enctype="multipart/form-data" class="space-y-4 bg-white p-6 rounded-lg shadow">
+        <input type="text" name="id" placeholder="Enter Patient ID" class="w-full border px-4 py-3 rounded-lg" />
+        <input type="file" name="report" class="w-full border px-4 py-3 rounded-lg" />
+        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Upload Report</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Download Report -->
+  <section class="py-12 bg-white" id="reports">
+    <div class="max-w-xl mx-auto">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Download Your Report</h3>
+      <form method="GET" action="/get_report" class="flex gap-4 items-center">
+        <input type="text" name="uid" placeholder="Enter your ID" class="flex-1 px-4 py-2 border rounded-lg" />
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg">Download</button>
+      </form>
+    </div>
+  </section>
+<script>
+  function openModal(id) {
+    document.getElementById(id + '-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(id) {
+    document.getElementById(id + '-modal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  let currentUser = null;
+
+  function signUp(e) {
+    e.preventDefault();
+    const username = document.getElementById('signup-username').value;
+    const password = document.getElementById('signup-password').value;
+    const role = document.getElementById('signup-role').value;
+
+    if (!username || !password || !role) {
+      alert('Please fill all fields.');
+      return;
+    }
+
+    localStorage.setItem('user-' + username, JSON.stringify({ username, password, role }));
+    alert('Registered successfully! Please sign in.');
+    closeModal('signup');
+  }
+
+  function signIn(e) {
+    e.preventDefault();
+    const username = document.getElementById('signin-username').value;
+    const password = document.getElementById('signin-password').value;
+    const user = JSON.parse(localStorage.getItem('user-' + username));
+
+    if (!user || user.password !== password) {
+      alert('Invalid credentials');
+      return;
+    }
+
+    currentUser = user;
+    alert('Logged in as ' + user.username);
+    closeModal('signin');
+
+    if (user.role === 'owner') {
+      document.getElementById('upload-report-section').classList.remove('hidden');
+    } else {
+      document.getElementById('upload-report-section').classList.add('hidden');
+    }
+  }
+
+  // Optional: logout function
+  function logout() {
+    currentUser = null;
+    document.getElementById('upload-report-section').classList.add('hidden');
+    alert('Logged out');
+  }
+
+  // Close modals if clicking outside
+  document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('modal')) {
+      event.target.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  });
+</script>
+<section id="contact" class="py-16 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-12">
+      
+      <!-- Contact Info -->
+      <div>
+        <h3 class="text-3xl font-bold text-gray-900 mb-6">Get In Touch</h3>
+        <div class="space-y-4">
+          <div class="flex items-start space-x-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+              <span class="text-blue-600">📍</span>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900">Visit Our Lab</p>
+              <p class="text-gray-600">123 Medical Street, Healthcare District</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+              <span class="text-green-600">📞</span>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900">Call Us</p>
+              <p class="text-gray-600">+91 75081 87340</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+              <span class="text-purple-600">📧</span>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900">Email Us</p>
+              <p class="text-gray-600">social.hbdiagnostic@gmail.com</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+              <span class="text-orange-600">🕒</span>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900">Working Hours</p>
+              <p class="text-gray-600">Open 24/7 – Emergency Services Available</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="bg-white rounded-2xl p-8 shadow">
+        <h4 class="text-xl font-semibold text-gray-900 mb-6">Message Us</h4>
+        <form class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <input type="text" placeholder="Full Name" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+            <input type="tel" placeholder="Phone Number" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+          </div>
+          <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+          <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"></textarea>
+          <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Newsletter -->
+  <section class="bg-blue-50 py-8">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <h4 class="text-lg font-semibold text-gray-800 mb-2">Stay Updated with Health Tips</h4>
+      <form class="flex justify-center mt-4">
+        <input type="email" placeholder="Subscribe to our newsletter" class="px-4 py-2 rounded-l-lg bg-white text-gray-700 focus:outline-none" />
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Booking Anchor Placeholder -->
+  <section id="booking" class="hidden"></section>
+
+</body>
+</html>
